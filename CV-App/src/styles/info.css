@@ -1,0 +1,30 @@
+form {
+  background-color: #fff;
+  border-radius: 10px;
+  gap: 30px;
+  padding: 20px;
+  font-size: 1.1rem;
+  box-shadow: 3px 3px 5px lightgrey;
+  width: 50%;
+}
+
+form, .fullName, .email, .phone, .location {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+form input {
+  border-radius: 5px;
+  background-color: rgb(243, 242, 242);
+  font-size: 1.1rem;
+}
+
+form input:focus {
+  outline: none;
+  border: 3px solid dodgerblue;
+}
