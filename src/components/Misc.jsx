@@ -20,3 +20,14 @@ export function Logo() {
     </div>
   )
 }
+
+export function Form({className, children, title}) {
+  return (
+    <>
+    <form className={className}>
+      <h1>{title}</h1>
+      {children}
+    </form>
+    </>
+  )
+}

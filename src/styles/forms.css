@@ -8,7 +8,7 @@ form {
   width: 50%;
 }
 
-form, .fullName, .email, .phone, .location {
+form, .fullName, .email, .phone, .location, .jobTitle {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -22,9 +22,35 @@ form input {
   border-radius: 5px;
   background-color: rgb(243, 242, 242);
   font-size: 1.1rem;
+  outline: none;
 }
 
 form input:focus {
   outline: none;
   border: 3px solid dodgerblue;
+}
+
+.show-social {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.show-social-icon:hover {
+  cursor: pointer;
+}
+
+.github, .linkedIn, .whatsapp, .telegram, .website {
+  display: flex;
+  gap: 10px;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-links input {
+  width: 100%;
 }

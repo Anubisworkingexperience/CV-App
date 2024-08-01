@@ -8,6 +8,5 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 0.75rem rgb(202, 40, 252));
   transform: scale(1.1);
 }
