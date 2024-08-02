@@ -1,12 +1,12 @@
 import { Input, Form } from "./Misc"
 import '../styles/forms.css'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react"
 
 function SocialLinks() {
   return (
-    <div className="social-links">
+    <div className="social-links" >
       <Input className='github' label='Github:'/>
       <Input className='linkedIn' label='LinkedIn:'/>
       <Input className='whatsapp' label='Whatsapp:'/>
@@ -18,25 +18,34 @@ function SocialLinks() {
 
 
 export function PersonalInformation() {
-  // [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-  // function handleShowSocialLinks() {
-    
-  // }
+  function handleShowSocialLinks() {
+    setShow(prevShow => !prevShow);
+  }
 
   return (
     <>
     <Form className='info' title='Personal information'>
       <Input className='fullName' label='Full name'/>
       <Input className='jobTitle' label='Job title'/>
+      <div className="summary">
+        <strong><label key='summary' htmlFor='summary'>Professional summary</label></strong>
+        <textarea id="summary" name="summary" rows={5} cols={40}></textarea>
+      </div>
       <Input className='email' label='Email'/>
       <Input className='phone' label='Phone number'/>
       <Input className='location' label='Location'/>
       <div className="show-social">
-        <div className="show-social-text">Show social links</div>
-        <FontAwesomeIcon icon={faChevronDown} className="show-social-icon" />
+        <div className="show-social-container">
+          <div className="show-social-open">
+            <div className="show-social-text">{show ? 'Hide social links' : 'Show social links'}</div>
+            <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className="show-social-icon" onClick={handleShowSocialLinks}
+            />
+          </div>
+        {show && <SocialLinks />}
+        </div>
       </div> 
-      <SocialLinks />
     </Form>
     </>
   )

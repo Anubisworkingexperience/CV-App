@@ -12,6 +12,14 @@ export function Input({className, label}) {
   )
 }
 
+export function Wrapper({className, children}) {
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  )
+}
+
 export function Logo() {
   return (
     <div className="logo">
@@ -31,3 +39,4 @@ export function Form({className, children, title}) {
     </>
   )
 }
+
