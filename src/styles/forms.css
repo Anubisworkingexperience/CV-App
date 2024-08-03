@@ -10,7 +10,8 @@ form {
 }
 
 form, .fullName, .email, .phone, .location, .jobTitle, .summary, .college, .degree
-,.startDate, .endDate, .educationLocation {
+,.startDate, .endDate, .educationLocation, .company, .position, .work-description,
+.workLocation {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -38,7 +39,7 @@ button{
   margin: 0 auto;
 }
 
-.show-social-icon:hover, .show-education-icon {
+.show-social-open:hover, .show-education, .show-experience {
   cursor: pointer;
 }
 
@@ -81,8 +82,16 @@ button{
   flex: 1;
 }
 
-.show-education, .show-social-open, .formTitle, .show-social  {
+.show-education, .show-social-open, .formTitle, .show-social, .show-experience  {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.show-education, .show-experience {
+  width: max-content;
+}
+
+textarea {
+  resize: none;
 }

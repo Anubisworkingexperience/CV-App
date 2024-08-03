@@ -1,11 +1,9 @@
-import { Input, Form, Button } from "./Misc"
+import { Input, Form, Button, ShowContent } from "./Components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faGraduationCap, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 
 export function EducationInformation() {
-  
   return (
     <>
       <Form className='education' title='Education' icon={faGraduationCap}>
@@ -22,21 +20,11 @@ export function EducationInformation() {
   )
 }
 
-export function ShowEducation() {
-  const [show, setShow] = useState(false);
-
-  function handleShowEducation() {
-    setShow(prevShow => !prevShow);
-  }
-
+export function EducationComponent() {
   return (
-    <div className="show-education-container">
-      <div className="show-education">
-        <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className="show-education-icon" onClick={handleShowEducation} />
-        <h1>{show ? 'Hide education' : 'Show education'}</h1>
-      </div>
-      {show && <EducationInformation />}
-    </div>
+    <>
+      <ShowContent className='show-education' contentComponent={EducationInformation} 
+      label='Education'/>
+    </>
   )
-
 }
