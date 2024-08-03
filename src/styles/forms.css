@@ -6,9 +6,11 @@ form {
   font-size: 1.1rem;
   box-shadow: 3px 3px 5px lightgrey;
   width: 50%;
+  margin-bottom: 30px;
 }
 
-form, .fullName, .email, .phone, .location, .jobTitle, .summary {
+form, .fullName, .email, .phone, .location, .jobTitle, .summary, .college, .degree
+,.startDate, .endDate, .educationLocation {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -25,18 +27,18 @@ form input, textarea {
   outline: none;
 }
 
-form input:focus, textarea:focus {
+form input:focus, textarea:focus{
   outline: none;
-  border: 3px solid dodgerblue;
+  border: 2px solid dodgerblue;
 }
 
-.show-social {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+button{
+  width: 35%;
+  border: 1px solid black;
+  margin: 0 auto;
 }
 
-.show-social-icon:hover {
+.show-social-icon:hover, .show-education-icon {
   cursor: pointer;
 }
 
@@ -55,17 +57,32 @@ form input:focus, textarea:focus {
   display: flex;
 }
 
-/* .social-links {
-  display: none;
-} */
-
 .social-links input {
   width: 100%;
 }
 
 .show-social-open {
+  margin-bottom: 10px;
+}
+
+.date {
+  display: flex;
+  gap: 30px;
+  /* justify-content: space-between; */
+  width: 100%;
+}
+
+.startDate > input, .endDate > input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.startDate, .endDate {
+  flex: 1;
+}
+
+.show-education, .show-social-open, .formTitle, .show-social  {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 10px;
 }
