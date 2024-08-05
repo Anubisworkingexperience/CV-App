@@ -1,4 +1,4 @@
-import { Input, Form } from "./Components"
+import { Input, Form, FormInputsContent } from "./Components"
 import '../styles/forms.css'
 import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,23 +12,30 @@ function SocialLinks() {
       <Input className='linkedIn' label='LinkedIn:'/>
       <Input className='whatsapp' label='Whatsapp:'/>
       <Input className='telegram' label='Telegram:'/>
-      <Input className='website' label='Website:'/>
+      <Input className='website' label='Website:' />
     </div>
   )
 }
 
 
-export function PersonalInformation() {
+export function PersonalInformation({person, setPerson}) {
   const [show, setShow] = useState(false);
 
   function handleShowSocialLinks() {
     setShow(prevShow => !prevShow);
   }
 
+  function handleFullNameChange(e) {
+    setPerson({
+      ...person,
+      fullName: e.target.value
+    }); 
+  }
+
   return (
     <>
     <Form className='info' title='Personal information' icon={faUser} >
-      <Input className='fullName' label='Full name'/>
+      <Input className='fullName' label='Full name' onChange={handleFullNameChange} />
       <Input className='jobTitle' label='Job title'/>
       <div className="summary">
         <strong><label key='summary' htmlFor='summary'>Professional summary</label></strong>
@@ -40,8 +47,8 @@ export function PersonalInformation() {
       <div className="show-social">
         <div className="show-social-container">
           <div className="show-social-open" onClick={handleShowSocialLinks}>
+          <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className="show-social-icon"/>
             <div className="show-social-text">{show ? 'Hide social links' : 'Show social links'}</div>
-            <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className="show-social-icon"/>
           </div>
         {show && <SocialLinks />}
         </div>

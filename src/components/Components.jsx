@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom'
 import { faScrewdriverWrench, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import '../styles/misc.css'
 import { useState } from 'react'
+import { PersonalInformation} from './PersonalInfo'
+import { PreviewComponent } from './Preview'
+import { EducationComponent } from './Education'
+import { ExperienceComponent } from './Experience'
 
-export function Input({className, label}) {
+export function Input({className, label, onChange}) {
   return (
     <div className={className}>
       <strong><label key={className} htmlFor={className}>{label}</label></strong>
-      <input type="text" id={className}/>
+      <input type="text" id={className} onChange={onChange}/>
     </div>
   )
 }
@@ -59,6 +63,43 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
         <h1>{show ? `Hide ${label}` : `Show ${label}`}</h1>
       </div>
       {show && <ContentComponent />}
+    </div>
+  )
+}
+
+export function FormInputsContent() {
+  const [person, setPerson] = useState({
+    fullName: '',
+    jobTitle: '',
+    summary: '',
+    email: '',
+    phone: '',
+    location: '',
+    github: '',
+    linkedIn: '',
+    whatsApp: '',
+    telegram: '',
+    website: '',
+    college: '',
+    degree: '',
+    startDateCollege: '',
+    endDateCollege: '',
+    collegeLocation: '',
+    company: '',
+    position: '',
+    description: '',
+    startDateWork: '',
+    endDateWork: '',
+    workLocation: ''
+  });
+  return (
+    <div className='app'>
+      <section className="edit-side">
+        <PersonalInformation person={person} setPerson={setPerson} />
+        <EducationComponent />
+        <ExperienceComponent />
+      </section>
+      <PreviewComponent person={person} />
     </div>
   )
 }
