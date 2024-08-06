@@ -8,11 +8,11 @@ import { PreviewComponent } from './Preview'
 import { EducationComponent } from './Education'
 import { ExperienceComponent } from './Experience'
 
-export function Input({className, label, onChange}) {
+export function Input({className, label, onChange, name, value}) {
   return (
     <div className={className}>
       <strong><label key={className} htmlFor={className}>{label}</label></strong>
-      <input type="text" id={className} onChange={onChange}/>
+      <input type="text" id={className} onChange={onChange} name={name} value={value}/>
     </div>
   )
 }
@@ -62,42 +62,42 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
         <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className={`${className}-icon`} />
         <h1>{show ? `Hide ${label}` : `Show ${label}`}</h1>
       </div>
-      {show && <ContentComponent />}
+      {show && ContentComponent}
     </div>
   )
 }
 
 export function FormInputsContent() {
   const [person, setPerson] = useState({
-    fullName: '',
-    jobTitle: '',
-    summary: '',
-    email: '',
-    phone: '',
-    location: '',
-    github: '',
-    linkedIn: '',
-    whatsApp: '',
-    telegram: '',
-    website: '',
-    college: '',
-    degree: '',
-    startDateCollege: '',
-    endDateCollege: '',
-    collegeLocation: '',
-    company: '',
-    position: '',
-    description: '',
-    startDateWork: '',
-    endDateWork: '',
-    workLocation: ''
+    fullName: 'John Doe',
+    jobTitle: 'Mechanical engineer',
+    summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tellus purus, convallis id est vel, vehicula efficitur ligula. Vivamus id ullamcorper felis. Cras lorem elit, commodo et hendrerit ut, tincidunt id augue. Integer placerat magna ac purus suscipit, sed tincidunt diam tempor. Sed finibus dolor id sagittis tincidunt. In at est in magna bibendum imperdiet in non nulla. Nunc maximus metus vel urna aliquet, nec consequat orci commodo. Sed vestibulum ac nisl vel dignissim.',
+    email: 'example@gmail.com',
+    phone: '+12345678907',
+    location: 'New York, USA',
+    github: 'github.com',
+    linkedIn: 'linkedin.com',
+    whatsApp: 'whatsapp.com',
+    telegram: 'telegram.org',
+    website: 'website.com',
+    college: 'Harvard University',
+    degree: 'Mechanical engineering',
+    startDateCollege: '2015',
+    endDateCollege: '2019',
+    collegeLocation: 'Massachusetts, USA',
+    company: 'Tesla',
+    position: 'Mechanical engineer',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget velit faucibus metus scelerisque posuere ac id enim. Proin eu felis convallis eros interdum maximus. Proin ultrices lacinia elit, ac dapibus arcu semper ac. Maecenas tincidunt mauris dolor. Maecenas eu pulvinar metus. Suspendisse potenti. Vivamus commodo leo ac laoreet lobortis. Etiam nec porta odio. Vivamus fermentum mauris urna, et convallis turpis dictum quis.',
+    startDateWork: '2019',
+    endDateWork: '2024',
+    workLocation: 'Texas, USA'
   });
   return (
     <div className='app'>
       <section className="edit-side">
         <PersonalInformation person={person} setPerson={setPerson} />
-        <EducationComponent />
-        <ExperienceComponent />
+        <EducationComponent person={person} setPerson={setPerson}/>
+        <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
       <PreviewComponent person={person} />
     </div>
