@@ -10,3 +10,17 @@
 .logo:hover{
   transform: scale(1.1);
 }
+
+.clearButton {
+  color: red;
+  text-align: center;
+  background-color: #fff;
+  min-width: max-content;
+  width: 10%;
+  flex: 1;
+  font-size: 1.25rem;
+}
+
+.clearIcon {
+  margin-right: 5px;
+}

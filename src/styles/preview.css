@@ -25,12 +25,14 @@
   background-color: rgb(32, 47, 113);
   width: 30%;
   color: #fff;
+  min-width: min-content;
   padding: 20px;
   text-align: start;
 }
 
 .preview-info {
   padding: 20px;
+  min-width: min-content;
 }
 
 .brands {

@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactDOM from 'react-dom'
-import { faScrewdriverWrench, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faScrewdriverWrench, faChevronUp, faChevronDown, faTrashCan, faL } from '@fortawesome/free-solid-svg-icons'
 import '../styles/misc.css'
 import { useState } from 'react'
 import { PersonalInformation} from './PersonalInfo'
-import { PreviewComponent } from './Preview'
+import { PreviewComponent, PreviewInfo, ContactInfo } from './Preview'
 import { EducationComponent } from './Education'
 import { ExperienceComponent } from './Experience'
 
@@ -49,6 +49,15 @@ export function Button({text, className}) {
   )
 }
 
+export function ClearButton({onClick}) {
+  return (
+    <>
+    <button className='clearButton' onClick={onClick}>
+      <FontAwesomeIcon icon={faTrashCan} className='clearIcon'/>Clear</button>
+    </>
+  )
+}
+
 export function ShowContent({className, contentComponent: ContentComponent, label}) {
   const [show, setShow] = useState(false);
 
@@ -68,6 +77,12 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
 }
 
 export function FormInputsContent() {
+
+  const [separators, setSeparators] = useState({
+    hyphen: '-',
+    comma: ','
+  })
+
   const [person, setPerson] = useState({
     fullName: 'John Doe',
     jobTitle: 'Mechanical engineer',
@@ -92,14 +107,48 @@ export function FormInputsContent() {
     endDateWork: '2024',
     workLocation: 'Texas, USA'
   });
+
+  function resetPreviewContent() {
+    setPerson(
+      {
+        fullName: '',
+        jobTitle: '',
+        summary: '',
+        email: '',
+        phone: '',
+        location: '',
+        github: '',
+        linkedIn: '',
+        whatsApp: '',
+        telegram: '',
+        website: '',
+        college: '',
+        degree: '',
+        startDateCollege: '',
+        endDateCollege: '',
+        collegeLocation: '',
+        company: '',
+        position: '',
+        description: '',
+        startDateWork: '',
+        endDateWork: '',
+        workLocation: ''
+      }
+    );
+    setSeparators({
+      hyphen: '',
+      comma: ''
+    })
+  }
   return (
     <div className='app'>
       <section className="edit-side">
+        <ClearButton onClick={resetPreviewContent} />
         <PersonalInformation person={person} setPerson={setPerson} />
         <EducationComponent person={person} setPerson={setPerson}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
-      <PreviewComponent person={person} />
+      <PreviewComponent person={person} separators={separators}/>
     </div>
   )
 }

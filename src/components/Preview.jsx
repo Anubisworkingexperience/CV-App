@@ -4,10 +4,35 @@ import { faGithub, faLinkedin, faWhatsapp, faTelegram} from '@fortawesome/free-b
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 
 
-export function PreviewComponent({person}) {
+export function PreviewComponent({person, separators}) {
   return (
     <section className="preview-content">
-      <div className="contact-info">
+      <ContactInfo person={person} separators={separators}/>
+      <PreviewInfo person={person} separators={separators}/>
+    </section>
+  )
+}
+
+export function PreviewInfo({person, separators}) {
+  return (
+  <div className="preview-info">
+        <h1>{person.fullName}</h1>
+        <h2>{person.jobTitle}</h2>
+        <div>{person.summary}</div>
+        <h2 className='preview-experience-title'>Experience</h2>
+        <hr />
+        <div>{person.startDateWork} {separators.hyphen} {person.endDateWork}{separators.comma} {person.workLocation}</div>
+        <strong>{person.company}</strong>
+        <br />
+        <strong>{person.position}</strong>
+        <div>{person.description}</div>
+      </div>
+  )
+}
+
+export function ContactInfo({person, separators}) {
+  return (
+    <div className="contact-info">
         <h1>Contact</h1>
         <hr />
         <div className="contact-phone">
@@ -47,24 +72,11 @@ export function PreviewComponent({person}) {
         <h1 className='contact-education-title'>Education</h1>
         <hr />
         <div className="contact-education">
-            <div>{person.startDateCollege} - {person.endDateCollege}</div>
+            <div>{person.startDateCollege} {separators.hyphen} {person.endDateCollege}</div>
             <h2>{person.degree}</h2>
             <div>{person.college}</div>
             <div>{person.collegeLocation}</div>
         </div>
       </div>
-      <div className="preview-info">
-        <h1>{person.fullName}</h1>
-        <h2>{person.jobTitle}</h2>
-        <div>{person.summary}</div>
-        <h2 className='preview-experience-title'>Experience</h2>
-        <hr />
-        <div>{person.startDateWork} - {person.endDateWork}, {person.workLocation}</div>
-        <strong>{person.company}</strong>
-        <br />
-        <strong>{person.position}</strong>
-        <div>{person.description}</div>
-      </div>
-    </section>
   )
 }
