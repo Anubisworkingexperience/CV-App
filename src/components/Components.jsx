@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactDOM from 'react-dom'
-import { faScrewdriverWrench, faChevronUp, faChevronDown, faTrashCan, faL } from '@fortawesome/free-solid-svg-icons'
+import { faScrewdriverWrench, faChevronUp, faChevronDown, faTrashCan, faHashtag } from '@fortawesome/free-solid-svg-icons'
 import '../styles/misc.css'
 import { useState } from 'react'
 import { PersonalInformation} from './PersonalInfo'
@@ -58,6 +58,16 @@ export function ClearButton({onClick}) {
   )
 }
 
+export function ExampleContentButton({onClick}) {
+  return (
+    <>
+    <button className='exampleButton' onClick={onClick}>
+    <FontAwesomeIcon icon={faHashtag} className='exampleIcon'/>Example
+    </button>
+    </>
+  )
+}
+
 export function ShowContent({className, contentComponent: ContentComponent, label}) {
   const [show, setShow] = useState(false);
 
@@ -78,10 +88,7 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
 
 export function FormInputsContent() {
 
-  const [separators, setSeparators] = useState({
-    hyphen: '-',
-    comma: ','
-  })
+  const [show, setShow] = useState(true);
 
   const [person, setPerson] = useState({
     fullName: 'John Doe',
@@ -109,46 +116,24 @@ export function FormInputsContent() {
   });
 
   function resetPreviewContent() {
-    setPerson(
-      {
-        fullName: '',
-        jobTitle: '',
-        summary: '',
-        email: '',
-        phone: '',
-        location: '',
-        github: '',
-        linkedIn: '',
-        whatsApp: '',
-        telegram: '',
-        website: '',
-        college: '',
-        degree: '',
-        startDateCollege: '',
-        endDateCollege: '',
-        collegeLocation: '',
-        company: '',
-        position: '',
-        description: '',
-        startDateWork: '',
-        endDateWork: '',
-        workLocation: ''
-      }
-    );
-    setSeparators({
-      hyphen: '',
-      comma: ''
-    })
+    setShow(false);
+  }
+
+  function examplePreviewContent() {
+    setShow(true);
   }
   return (
     <div className='app'>
       <section className="edit-side">
-        <ClearButton onClick={resetPreviewContent} />
+        <div className="action-buttons">
+          <ClearButton onClick={resetPreviewContent} />
+          <ExampleContentButton onClick={examplePreviewContent}/>
+        </div>
         <PersonalInformation person={person} setPerson={setPerson} />
         <EducationComponent person={person} setPerson={setPerson}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
-      <PreviewComponent person={person} separators={separators}/>
+      <PreviewComponent person={person} show={show}/>
     </div>
   )
 }

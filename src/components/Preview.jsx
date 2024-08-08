@@ -4,35 +4,40 @@ import { faGithub, faLinkedin, faWhatsapp, faTelegram} from '@fortawesome/free-b
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 
 
-export function PreviewComponent({person, separators}) {
+export function PreviewComponent({person, show}) {
   return (
     <section className="preview-content">
-      <ContactInfo person={person} separators={separators}/>
-      <PreviewInfo person={person} separators={separators}/>
+      <ContactInfo person={person} show={show} />
+      <PreviewInfo person={person} show={show}/>
     </section>
   )
 }
 
-export function PreviewInfo({person, separators}) {
+export function PreviewInfo({person, show}) {
   return (
-  <div className="preview-info">
-        <h1>{person.fullName}</h1>
-        <h2>{person.jobTitle}</h2>
-        <div>{person.summary}</div>
-        <h2 className='preview-experience-title'>Experience</h2>
-        <hr />
-        <div>{person.startDateWork} {separators.hyphen} {person.endDateWork}{separators.comma} {person.workLocation}</div>
-        <strong>{person.company}</strong>
-        <br />
-        <strong>{person.position}</strong>
-        <div>{person.description}</div>
-      </div>
+    show && (
+    <div className="preview-info" >
+    <h1>{person.fullName}</h1>
+    <h2>{person.jobTitle}</h2>
+    <div>{person.summary}</div>
+    <h2 className='preview-experience-title'>Experience</h2>
+    <hr />
+    <div>{person.startDateWork} - {person.endDateWork}, {person.workLocation}</div>
+    <strong>{person.company}</strong>
+    <br />
+    <strong>{person.position}</strong>
+    <div>{person.description}</div>
+  </div>
+    )
   )
 }
+  
 
-export function ContactInfo({person, separators}) {
+export function ContactInfo({person, show}) {
   return (
-    <div className="contact-info">
+    <div className="contact-info" >
+      {show && (
+        <>
         <h1>Contact</h1>
         <hr />
         <div className="contact-phone">
@@ -72,11 +77,13 @@ export function ContactInfo({person, separators}) {
         <h1 className='contact-education-title'>Education</h1>
         <hr />
         <div className="contact-education">
-            <div>{person.startDateCollege} {separators.hyphen} {person.endDateCollege}</div>
+            <div>{person.startDateCollege} - {person.endDateCollege}</div>
             <h2>{person.degree}</h2>
             <div>{person.college}</div>
             <div>{person.collegeLocation}</div>
         </div>
+        </>
+        )}
       </div>
   )
 }

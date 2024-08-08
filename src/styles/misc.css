@@ -13,6 +13,16 @@
 
 .clearButton {
   color: red;
+  /* margin-right: 20px; */
+}
+
+.action-buttons {
+  display: flex;
+  width: 50%;
+  gap: 20px;
+}
+
+.clearButton, .exampleButton {
   text-align: center;
   background-color: #fff;
   min-width: max-content;
@@ -21,6 +31,6 @@
   font-size: 1.25rem;
 }
 
-.clearIcon {
+.clearIcon, .exampleIcon {
   margin-right: 5px;
 }
