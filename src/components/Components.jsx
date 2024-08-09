@@ -89,6 +89,10 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
 export function FormInputsContent() {
 
   const [show, setShow] = useState(true);
+  const [separators, setSeparators] = useState({
+    hyphen: '-',
+    comma: ','
+  })
 
   const [person, setPerson] = useState({
     fullName: 'John Doe',
@@ -116,11 +120,67 @@ export function FormInputsContent() {
   });
 
   function resetPreviewContent() {
+    setSeparators({
+      hyphen: '',
+      comma: ''
+    })
     setShow(false);
+    setPerson({
+    fullName: '',
+    jobTitle: '',
+    summary: '',
+    email: '',
+    phone: '',
+    location: '',
+    github: '',
+    linkedIn: '',
+    whatsApp: '',
+    telegram: '',
+    website: '',
+    college: '',
+    degree: '',
+    startDateCollege: '',
+    endDateCollege: '',
+    collegeLocation: '',
+    company: '',
+    position: '',
+    description: '',
+    startDateWork: '',
+    endDateWork: '',
+    workLocation: ''
+    })
   }
 
   function examplePreviewContent() {
+    setSeparators({
+      hyphen: '-',
+      comma: ','
+    })
     setShow(true);
+    setPerson({
+    fullName: 'John Doe',
+    jobTitle: 'Mechanical engineer',
+    summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tellus purus, convallis id est vel, vehicula efficitur ligula. Vivamus id ullamcorper felis. Cras lorem elit, commodo et hendrerit ut, tincidunt id augue. Integer placerat magna ac purus suscipit, sed tincidunt diam tempor. Sed finibus dolor id sagittis tincidunt. In at est in magna bibendum imperdiet in non nulla. Nunc maximus metus vel urna aliquet, nec consequat orci commodo. Sed vestibulum ac nisl vel dignissim.',
+    email: 'example@gmail.com',
+    phone: '+12345678907',
+    location: 'New York, USA',
+    github: 'github.com',
+    linkedIn: 'linkedin.com',
+    whatsApp: 'whatsapp.com',
+    telegram: 'telegram.org',
+    website: 'website.com',
+    college: 'Harvard University',
+    degree: 'Mechanical engineering',
+    startDateCollege: '2015',
+    endDateCollege: '2019',
+    collegeLocation: 'Massachusetts, USA',
+    company: 'Tesla',
+    position: 'Mechanical engineer',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget velit faucibus metus scelerisque posuere ac id enim. Proin eu felis convallis eros interdum maximus. Proin ultrices lacinia elit, ac dapibus arcu semper ac. Maecenas tincidunt mauris dolor. Maecenas eu pulvinar metus. Suspendisse potenti. Vivamus commodo leo ac laoreet lobortis. Etiam nec porta odio. Vivamus fermentum mauris urna, et convallis turpis dictum quis.',
+    startDateWork: '2019',
+    endDateWork: '2024',
+    workLocation: 'Texas, USA'
+    })
   }
   return (
     <div className='app'>
@@ -133,7 +193,7 @@ export function FormInputsContent() {
         <EducationComponent person={person} setPerson={setPerson}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
-      <PreviewComponent person={person} show={show}/>
+      <PreviewComponent person={person} show={show} separators={separators}/>
     </div>
   )
 }
