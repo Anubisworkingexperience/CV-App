@@ -1,18 +1,66 @@
 import { Input, Form, FormInputsContent } from "./Components"
 import '../styles/forms.css'
-import { faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react"
+import { ContactInfo } from "./Preview"
 
 
 function SocialLinks({onChange}) {
+  const [showGithub, setShowGithub] = useState(true);
+  const [showLinkedIn, setShowLinkedIn] = useState(true);
+  const [showWhatsapp, setShowWhatsapp] = useState(true);
+  const [showTelegram, setShowTelegram] = useState(true);
+  const [showWebsite, setShowWebsite] = useState(true);
+
+  function handleShowSocials(social) {
+    switch(social) {
+      case 'github':
+        setShowGithub(prev => !prev);
+        break;
+      case 'linkedIn':
+        setShowLinkedIn(prev => !prev);
+        break;
+      case 'whatsapp':
+        setShowWhatsapp(prev => !prev);
+        break;
+      case 'telegram':
+        setShowTelegram(prev => !prev);
+        break;
+      case 'website':
+        setShowWebsite(prev => !prev);
+        break;
+    }
+    <ContactInfo showGithub={showGithub}/>
+  }
+
   return (
     <div className="social-links" >
-      <Input className='github' label='Github:' onChange={onChange} name='github'/>
-      <Input className='linkedIn' label='LinkedIn:' onChange={onChange} name='linkedIn'/>
-      <Input className='whatsapp' label='Whatsapp:' onChange={onChange} name='whatsApp'/>
-      <Input className='telegram' label='Telegram:' onChange={onChange} name='telegram'/>
-      <Input className='website' label='Website:' onChange={onChange} name='website'/>
+      <div className="github-container">
+        <FontAwesomeIcon icon={showGithub ? faEyeSlash : faEye} className="github-show"
+         onClick={() => handleShowSocials('github')}/>
+        <Input className='github' label='Github:' onChange={onChange} name='github' />
+      </div>
+      <div className="linkedIn-container">
+        <FontAwesomeIcon icon={showLinkedIn ? faEyeSlash : faEye} className="linkedIn-show"
+        onClick={() => handleShowSocials('linkedIn')}/>
+        <Input className='linkedIn' label='LinkedIn:' onChange={onChange} name='linkedIn'/>
+      </div>
+      <div className="whatsapp-container">
+        <FontAwesomeIcon icon={showWhatsapp ? faEyeSlash : faEye} className="whatsapp-show"
+        onClick={() => handleShowSocials('whatsapp')}/>
+        <Input className='whatsapp' label='Whatsapp:' onChange={onChange} name='whatsApp'/>
+      </div>
+      <div className="telegram-container">
+        <FontAwesomeIcon icon={showTelegram ? faEyeSlash : faEye} className="telegram-show"
+        onClick={() => handleShowSocials('telegram')}/>
+        <Input className='telegram' label='Telegram:' onChange={onChange} name='telegram'/>
+      </div>
+      <div className="website-container">
+        <FontAwesomeIcon icon={showWebsite ? faEyeSlash : faEye} className="website-show"
+        onClick={() => handleShowSocials('website')}/>
+        <Input className='website' label='Website:' onChange={onChange} name='website'/>
+      </div>
     </div>
   )
 }

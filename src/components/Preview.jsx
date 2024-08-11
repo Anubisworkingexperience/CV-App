@@ -31,7 +31,8 @@ export function PreviewInfo({person, show, separators}) {
 }
   
 
-export function ContactInfo({person, show, separators}) {
+export function ContactInfo({person, separators, showGithub, showLinkedIn,
+showWhatsapp, showTelegram, showWebsite}) {
   return (
     <div className="contact-info" >
         <>

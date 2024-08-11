@@ -39,13 +39,21 @@ button{
   margin: 0 auto;
 }
 
-.show-social-open:hover, .show-education, .show-experience {
+.show-social-open:hover, .show-education, .show-experience,
+.github-show, .whatsapp-show, .telegram-show, .website-show, .linkedIn-show {
   cursor: pointer;
 }
 
 .github, .linkedIn, .whatsapp, .telegram, .website {
   display: flex;
   gap: 10px;
+}
+
+.github-container, .linkedIn-container, .whatsapp-container, .telegram-container,
+.website-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .social-links {
