@@ -2,12 +2,14 @@ import '../styles/preview.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faWhatsapp, faTelegram} from '@fortawesome/free-brands-svg-icons'
 import { faLink} from '@fortawesome/free-solid-svg-icons'
+import { EducationComponent } from './Education'
 
 
-export function PreviewComponent({person, show, separators}) {
+export function PreviewComponent({person, show, separators, educationCounter}) {
   return (
     <section className="preview-content">
-      <ContactInfo person={person} show={show} separators={separators}/>
+      <ContactInfo person={person} show={show} separators={separators}
+      educationCounter={educationCounter}/>
       <PreviewInfo person={person} show={show} separators={separators}/>
     </section>
   )
@@ -32,7 +34,7 @@ export function PreviewInfo({person, show, separators}) {
   
 
 export function ContactInfo({person, separators, showGithub, showLinkedIn,
-showWhatsapp, showTelegram, showWebsite}) {
+showWhatsapp, showTelegram, showWebsite, educationCounter}) {
   return (
     <div className="contact-info" >
         <>
@@ -75,10 +77,14 @@ showWhatsapp, showTelegram, showWebsite}) {
         <h1 className='contact-education-title'>Education</h1>
         <hr />
         <div className="contact-education">
+          {Array.from({length: educationCounter}).map( (_, index) => (
+            <div key={`education-${index}`}>
             <div>{person.startDateCollege} {separators.hyphen} {person.endDateCollege}</div>
             <h2>{person.degree}</h2>
             <div>{person.college}</div>
             <div>{person.collegeLocation}</div>
+            </div>
+            ))}  
         </div>
         </>
       </div>

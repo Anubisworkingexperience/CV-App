@@ -92,7 +92,8 @@ export function FormInputsContent() {
   const [separators, setSeparators] = useState({
     hyphen: '-',
     comma: ','
-  })
+  });
+  const [educationCounter, setEducationCounter] = useState(1);
 
   const [person, setPerson] = useState({
     fullName: 'John Doe',
@@ -190,10 +191,12 @@ export function FormInputsContent() {
           <ExampleContentButton onClick={examplePreviewContent}/>
         </div>
         <PersonalInformation person={person} setPerson={setPerson} />
-        <EducationComponent person={person} setPerson={setPerson}/>
+        <EducationComponent person={person} setPerson={setPerson} educationCounter={educationCounter}
+        setEducationCounter={setEducationCounter}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
-      <PreviewComponent person={person} show={show} separators={separators}/>
+      <PreviewComponent person={person} show={show} separators={separators}
+      educationCounter={educationCounter}/>
     </div>
   )
 }
