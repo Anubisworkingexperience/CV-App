@@ -6,12 +6,14 @@ import { useState } from "react"
 import { ContactInfo } from "./Preview"
 
 
-function SocialLinks({onChange}) {
-  const [showGithub, setShowGithub] = useState(true);
-  const [showLinkedIn, setShowLinkedIn] = useState(true);
-  const [showWhatsapp, setShowWhatsapp] = useState(true);
-  const [showTelegram, setShowTelegram] = useState(true);
-  const [showWebsite, setShowWebsite] = useState(true);
+function SocialLinks({onChange, showGithub, showLinkedIn, showWhatsapp, 
+showTelegram, showWebsite, setShowGithub, setShowLinkedIn, setShowWhatsapp,
+setShowTelegram, setShowWebsite}) {
+  // const [showGithub, setShowGithub] = useState(true);
+  // const [showLinkedIn, setShowLinkedIn] = useState(true);
+  // const [showWhatsapp, setShowWhatsapp] = useState(true);
+  // const [showTelegram, setShowTelegram] = useState(true);
+  // const [showWebsite, setShowWebsite] = useState(true);
 
   function handleShowSocials(social) {
     switch(social) {
@@ -31,7 +33,6 @@ function SocialLinks({onChange}) {
         setShowWebsite(prev => !prev);
         break;
     }
-    <ContactInfo showGithub={showGithub}/>
   }
 
   return (
@@ -66,7 +67,9 @@ function SocialLinks({onChange}) {
 }
 
 
-export function PersonalInformation({person, setPerson}) {
+export function PersonalInformation({person, setPerson, showGithub, showLinkedIn
+,showWhatsapp, showTelegram, showWebsite, setShowGithub, setShowLinkedIn
+,setShowWhatsapp, setShowTelegram, setShowWebsite}) {
   const [show, setShow] = useState(false);
 
   function handleShowSocialLinks() {
@@ -99,7 +102,11 @@ export function PersonalInformation({person, setPerson}) {
           <FontAwesomeIcon icon={show ? faChevronDown : faChevronUp} className="show-social-icon"/>
             <div className="show-social-text">{show ? 'Hide social links' : 'Show social links'}</div>
           </div>
-        {show && <SocialLinks onChange={handleInputChange}/>}
+        {show && <SocialLinks onChange={handleInputChange} showGithub={showGithub}
+        showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
+        showWebsite={showWebsite} setShowGithub={setShowGithub} setShowLinkedIn={setShowLinkedIn}
+        setShowWhatsapp={setShowWhatsapp} setShowTelegram={setShowTelegram} setShowWebsite={setShowWebsite}
+        />}
         </div>
       </div> 
     </Form>

@@ -71,23 +71,12 @@ function ExampleContentButton({onClick}) {
 
 function DownloadPdfButton({pdfRef}) {
 
-  //   const handleDownload = () => {
-  //     const previewElement = pdfRef.current;
-  //     const doc = new jsPDF('landscape');
-  //     doc.html(previewElement, {
-  //       callback: function (doc) {
-  //         doc.save('cv.pdf');
-  //       },
-  //       html2canvas: {scale: 0.4}
-  //     });
-  // }
   const handleDownload = () => {
     const previewElement = pdfRef.current;
     const opt = {
       margin: 0,
       filename: 'cv.pdf',
       image: { type: 'jpeg', quality: 0.95 },
-      // html2canvas: {height: 2000},
       jsPDF: {format: 'letter', compress: true},
     }
     html2pdf().set(opt).from(previewElement).save();
@@ -128,6 +117,11 @@ export function FormInputsContent() {
     hyphen: '-',
     comma: ','
   });
+  const [showGithub, setShowGithub] = useState(true);
+  const [showLinkedIn, setShowLinkedIn] = useState(true);
+  const [showWhatsapp, setShowWhatsapp] = useState(true);
+  const [showTelegram, setShowTelegram] = useState(true);
+  const [showWebsite, setShowWebsite] = useState(true);
   const [educationCounter, setEducationCounter] = useState(1);
 
   const [person, setPerson] = useState({
@@ -227,13 +221,19 @@ export function FormInputsContent() {
           <ExampleContentButton onClick={examplePreviewContent}/>
           <DownloadPdfButton pdfRef={pdfRef}/>
         </div>
-        <PersonalInformation person={person} setPerson={setPerson} />
+        <PersonalInformation person={person} setPerson={setPerson} showGithub={showGithub}
+        showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
+        showWebsite={showWebsite} setShowGithub={setShowGithub} setShowLinkedIn={setShowLinkedIn}
+        setShowWhatsapp={setShowWhatsapp} setShowTelegram={setShowTelegram} setShowWebsite={setShowWebsite}
+        />
         <EducationComponent person={person} setPerson={setPerson} educationCounter={educationCounter}
         setEducationCounter={setEducationCounter}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
       <PreviewComponent person={person} show={show} separators={separators}
-      educationCounter={educationCounter} pdfRef={pdfRef}/>
+      educationCounter={educationCounter} pdfRef={pdfRef} showGithub={showGithub} 
+      showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
+      showWebsite={showWebsite}/>
     </div>
   )
 }

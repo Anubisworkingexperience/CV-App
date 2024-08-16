@@ -4,11 +4,13 @@ import { faGithub, faLinkedin, faWhatsapp, faTelegram} from '@fortawesome/free-b
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 import { EducationComponent } from './Education'
 
-export function PreviewComponent({person, show, separators, educationCounter, pdfRef}) {
+export function PreviewComponent({person, show, separators, educationCounter, pdfRef,
+showGithub, showLinkedIn, showTelegram, showWhatsapp, showWebsite}) {
   return (
     <section className="preview-content" ref={pdfRef}>
       <ContactInfo person={person} show={show} separators={separators}
-      educationCounter={educationCounter} />
+      educationCounter={educationCounter} showGithub={showGithub} showLinkedIn={showLinkedIn}
+      showWhatsapp={showWhatsapp} showTelegram={showTelegram} showWebsite={showWebsite}/>
       <PreviewInfo person={person} show={show} separators={separators} />
     </section>
   )
@@ -52,26 +54,26 @@ showWhatsapp, showTelegram, showWebsite, educationCounter}) {
           <div>{person.location}</div>
         </div>
         <div className="contact-social-links">
-          <div className="github brands">
+          {showGithub && <div className="github brands">
           <FontAwesomeIcon icon={faGithub} />
           <div>{person.github}</div>
-          </div>
-          <div className="linkedIn brands">
+          </div>}
+          {showLinkedIn &&<div className="linkedIn brands">
           <FontAwesomeIcon icon={faLinkedin} />
             <div>{person.linkedIn}</div>
-          </div>
-          <div className="whatsApp brands">
+          </div>}
+          {showWhatsapp && <div className="whatsApp brands">
           <FontAwesomeIcon icon={faWhatsapp} />
             <div>{person.whatsApp}</div>
-          </div>
-          <div className="telegram brands">
+          </div>}
+          {showTelegram && <div className="telegram brands">
           <FontAwesomeIcon icon={faTelegram} />
             <div>{person.telegram}</div>
-          </div>
-          <div className="website brands">
+          </div>}
+          {showWebsite && <div className="website brands">
           <FontAwesomeIcon icon={faLink} />
             <div>{person.website}</div>
-          </div>
+          </div>}
         </div>
         <h1 className='contact-education-title'>Education</h1>
         <hr />
