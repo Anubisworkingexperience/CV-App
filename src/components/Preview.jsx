@@ -4,13 +4,12 @@ import { faGithub, faLinkedin, faWhatsapp, faTelegram} from '@fortawesome/free-b
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 import { EducationComponent } from './Education'
 
-
-export function PreviewComponent({person, show, separators, educationCounter}) {
+export function PreviewComponent({person, show, separators, educationCounter, pdfRef}) {
   return (
-    <section className="preview-content">
+    <section className="preview-content" ref={pdfRef}>
       <ContactInfo person={person} show={show} separators={separators}
-      educationCounter={educationCounter}/>
-      <PreviewInfo person={person} show={show} separators={separators}/>
+      educationCounter={educationCounter} />
+      <PreviewInfo person={person} show={show} separators={separators} />
     </section>
   )
 }
@@ -36,7 +35,7 @@ export function PreviewInfo({person, show, separators}) {
 export function ContactInfo({person, separators, showGithub, showLinkedIn,
 showWhatsapp, showTelegram, showWebsite, educationCounter}) {
   return (
-    <div className="contact-info" >
+    <div className="contact-info">
         <>
         <h1>Contact</h1>
         <hr />

@@ -1,6 +1,7 @@
 .preview-content {
   background-color: #fff;
-  box-shadow: 3px 3px 5px lightgrey;
+  /* box-shadow: 3px 3px 5px lightgrey; */
+  /* border: 2px solid black; */
   flex: 1;
   display: flex;
 }
@@ -69,4 +70,9 @@ hr, .contact-phone, .contact-email, .contact-location {
 
 .contact-education-title, .preview-experience-title {
   margin-top: 15px;
+}
+
+img {
+  width: 20px;
+  height: 20px;
 }

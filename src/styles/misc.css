@@ -13,7 +13,6 @@
 
 .clearButton {
   color: red;
-  /* margin-right: 20px; */
 }
 
 .action-buttons {
@@ -22,7 +21,7 @@
   gap: 20px;
 }
 
-.clearButton, .exampleButton {
+.clearButton, .exampleButton, .downloadButton {
   text-align: center;
   background-color: #fff;
   min-width: max-content;
@@ -31,6 +30,10 @@
   font-size: 1.25rem;
 }
 
-.clearIcon, .exampleIcon {
+.clearIcon, .exampleIcon, .downloadIcon {
   margin-right: 5px;
+}
+
+.exampleButton, .clearButton, .downloadButton {
+  margin-bottom: 10px;
 }

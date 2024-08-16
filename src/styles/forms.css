@@ -120,10 +120,6 @@ textarea {
   resize: none;
 }
 
-.exampleButton, .clearButton {
-  margin-bottom: 10px;
-}
-
 .contact-education {
   display: flex;
   flex-direction: column;

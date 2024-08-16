@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactDOM from 'react-dom'
-import { faScrewdriverWrench, faChevronUp, faChevronDown, faTrashCan, faHashtag } from '@fortawesome/free-solid-svg-icons'
+import { faScrewdriverWrench, faChevronUp, faChevronDown, faTrashCan, faHashtag, faDownload } from '@fortawesome/free-solid-svg-icons'
 import '../styles/misc.css'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { PersonalInformation} from './PersonalInfo'
 import { PreviewComponent, PreviewInfo, ContactInfo } from './Preview'
 import { EducationComponent } from './Education'
 import { ExperienceComponent } from './Experience'
+import { jsPDF } from "jspdf";
 
 export function Input({className, label, onChange, name, value}) {
   return (
@@ -49,7 +50,7 @@ export function Button({text, className}) {
   )
 }
 
-export function ClearButton({onClick}) {
+function ClearButton({onClick}) {
   return (
     <>
     <button className='clearButton' onClick={onClick}>
@@ -58,13 +59,46 @@ export function ClearButton({onClick}) {
   )
 }
 
-export function ExampleContentButton({onClick}) {
+function ExampleContentButton({onClick}) {
   return (
     <>
     <button className='exampleButton' onClick={onClick}>
     <FontAwesomeIcon icon={faHashtag} className='exampleIcon'/>Example
     </button>
     </>
+  )
+}
+
+function DownloadPdfButton({pdfRef}) {
+
+  //   const handleDownload = () => {
+  //     const previewElement = pdfRef.current;
+  //     const doc = new jsPDF('landscape');
+  //     doc.html(previewElement, {
+  //       callback: function (doc) {
+  //         doc.save('cv.pdf');
+  //       },
+  //       html2canvas: {scale: 0.4}
+  //     });
+  // }
+  const handleDownload = () => {
+    const previewElement = pdfRef.current;
+    const opt = {
+      margin: 0,
+      filename: 'cv.pdf',
+      image: { type: 'jpeg', quality: 0.95 },
+      // html2canvas: {height: 2000},
+      jsPDF: {format: 'letter', compress: true},
+    }
+    html2pdf().set(opt).from(previewElement).save();
+  }
+
+  return (
+    <div>
+    <button className='downloadButton' onClick={handleDownload}>
+    <FontAwesomeIcon icon={faDownload} className='downloadIcon'/>Download
+    </button >
+    </div>
   )
 }
 
@@ -89,6 +123,7 @@ export function ShowContent({className, contentComponent: ContentComponent, labe
 export function FormInputsContent() {
 
   const [show, setShow] = useState(true);
+  const pdfRef = useRef(null);
   const [separators, setSeparators] = useState({
     hyphen: '-',
     comma: ','
@@ -183,12 +218,14 @@ export function FormInputsContent() {
     workLocation: 'Texas, USA'
     })
   }
+
   return (
     <div className='app'>
       <section className="edit-side">
         <div className="action-buttons">
           <ClearButton onClick={resetPreviewContent} />
           <ExampleContentButton onClick={examplePreviewContent}/>
+          <DownloadPdfButton pdfRef={pdfRef}/>
         </div>
         <PersonalInformation person={person} setPerson={setPerson} />
         <EducationComponent person={person} setPerson={setPerson} educationCounter={educationCounter}
@@ -196,7 +233,7 @@ export function FormInputsContent() {
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
       <PreviewComponent person={person} show={show} separators={separators}
-      educationCounter={educationCounter}/>
+      educationCounter={educationCounter} pdfRef={pdfRef}/>
     </div>
   )
 }
