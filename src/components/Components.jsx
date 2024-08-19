@@ -91,6 +91,27 @@ function DownloadPdfButton({pdfRef}) {
   )
 }
 
+function CustomizeButton({onChange}) {
+  return (
+    <div className="customize">
+      <input type="color" name="customize-color" id="customize-color" onChange={onChange}/>
+      <div className="left-layout customize-icon">
+          <div className="layout-contact"></div>
+          <div className="layout-preview"></div>
+      </div>
+      <div className="right-layout customize-icon">
+          <div className="layout-preview"></div>
+          <div className="layout-contact"></div>
+      </div>
+      <div className="top-layout customize-icon">
+          <div className="layout-contact"></div>
+          <div className="layout-preview"></div>
+      </div>
+
+    </div>
+  )
+}
+
 export function ShowContent({className, contentComponent: ContentComponent, label}) {
   const [show, setShow] = useState(false);
 
@@ -123,6 +144,8 @@ export function FormInputsContent() {
   const [showTelegram, setShowTelegram] = useState(true);
   const [showWebsite, setShowWebsite] = useState(true);
   const [educationCounter, setEducationCounter] = useState(1);
+
+  const [contactColor, setContactColor] = useState('rgb(32, 47, 113)');
 
   const [person, setPerson] = useState({
     fullName: 'John Doe',
@@ -213,6 +236,10 @@ export function FormInputsContent() {
     })
   }
 
+  function changeContactInfoColor(e) {
+    setContactColor(e.target.value);
+  }
+
   return (
     <div className='app'>
       <section className="edit-side">
@@ -221,19 +248,22 @@ export function FormInputsContent() {
           <ExampleContentButton onClick={examplePreviewContent}/>
           <DownloadPdfButton pdfRef={pdfRef}/>
         </div>
-        <PersonalInformation person={person} setPerson={setPerson} showGithub={showGithub}
-        showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
-        showWebsite={showWebsite} setShowGithub={setShowGithub} setShowLinkedIn={setShowLinkedIn}
-        setShowWhatsapp={setShowWhatsapp} setShowTelegram={setShowTelegram} setShowWebsite={setShowWebsite}
-        />
+          <PersonalInformation person={person} setPerson={setPerson} showGithub={showGithub}
+          showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
+          showWebsite={showWebsite} setShowGithub={setShowGithub} setShowLinkedIn={setShowLinkedIn}
+          setShowWhatsapp={setShowWhatsapp} setShowTelegram={setShowTelegram} setShowWebsite={setShowWebsite}
+          />
         <EducationComponent person={person} setPerson={setPerson} educationCounter={educationCounter}
         setEducationCounter={setEducationCounter}/>
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
-      <PreviewComponent person={person} show={show} separators={separators}
-      educationCounter={educationCounter} pdfRef={pdfRef} showGithub={showGithub} 
-      showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
-      showWebsite={showWebsite}/>
+      <div className="preview-container">
+        <CustomizeButton onChange={changeContactInfoColor}/>
+        <PreviewComponent person={person} show={show} separators={separators}
+        educationCounter={educationCounter} pdfRef={pdfRef} showGithub={showGithub}
+        showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
+        showWebsite={showWebsite} contactColor={contactColor}/>
+      </div>
     </div>
   )
 }
