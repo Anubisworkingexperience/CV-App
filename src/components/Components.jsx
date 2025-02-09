@@ -91,22 +91,28 @@ function DownloadPdfButton({pdfRef}) {
   )
 }
 
-function CustomizeButton({onChange}) {
+function CustomizeButtons({onChange, topLayout}) {
   return (
     <div className="customize">
       <input type="color" name="customize-color" id="customize-color" onChange={onChange}/>
-      <div className="left-layout customize-icon">
-          <div className="layout-contact"></div>
-          <div className="layout-preview"></div>
-      </div>
-      <div className="right-layout customize-icon">
-          <div className="layout-preview"></div>
-          <div className="layout-contact"></div>
-      </div>
-      <div className="top-layout customize-icon">
-          <div className="layout-contact"></div>
-          <div className="layout-preview"></div>
-      </div>
+      <button className="layout-button">
+        <div className="left-layout customize-icon">
+            <div className="layout-contact"></div>
+            <div className="layout-preview"></div>
+        </div>
+      </button>
+      <button className="layout-button">
+        <div className="right-layout customize-icon">
+            <div className="layout-preview"></div>
+            <div className="layout-contact"></div>
+        </div>
+      </button>
+      <button className='layout-button' onClick={topLayout}>
+        <div className="top-layout customize-icon">
+            <div className="layout-contact"></div>
+            <div className="layout-preview"></div>
+        </div>
+      </button>
 
     </div>
   )
@@ -146,6 +152,8 @@ export function FormInputsContent() {
   const [educationCounter, setEducationCounter] = useState(1);
 
   const [contactColor, setContactColor] = useState('rgb(32, 47, 113)');
+
+  const [topLayout, setTopLayout] = useState(false);
 
   const [person, setPerson] = useState({
     fullName: 'John Doe',
@@ -205,6 +213,8 @@ export function FormInputsContent() {
   }
 
   function examplePreviewContent() {
+    setContactColor('rgb(32, 47, 113)');
+    setTopLayout(false);
     setSeparators({
       hyphen: '-',
       comma: ','
@@ -258,11 +268,12 @@ export function FormInputsContent() {
         <ExperienceComponent person={person} setPerson={setPerson}/>
       </section>
       <div className="preview-container">
-        <CustomizeButton onChange={changeContactInfoColor}/>
+        <CustomizeButtons onChange={changeContactInfoColor} topLayout={() => setTopLayout(true)}
+        />
         <PreviewComponent person={person} show={show} separators={separators}
         educationCounter={educationCounter} pdfRef={pdfRef} showGithub={showGithub}
         showLinkedIn={showLinkedIn} showWhatsapp={showWhatsapp} showTelegram={showTelegram}
-        showWebsite={showWebsite} contactColor={contactColor}/>
+        showWebsite={showWebsite} contactColor={contactColor} topLayout={topLayout}/>
       </div>
     </div>
   )

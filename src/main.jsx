@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { Logo, FormInputsContent } from './components/Components.jsx'
-
+// import { Logo, FormInputsContent } from './components/Components.jsx'
+import { App } from './components/App.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Logo />
-    <FormInputsContent />
+   <App />
   </React.StrictMode>,
 )

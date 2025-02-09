@@ -5,13 +5,14 @@ import { faLink} from '@fortawesome/free-solid-svg-icons'
 import { EducationComponent } from './Education'
 
 export function PreviewComponent({person, show, separators, educationCounter, pdfRef,
-showGithub, showLinkedIn, showTelegram, showWhatsapp, showWebsite, contactColor}) {
+showGithub, showLinkedIn, showTelegram, showWhatsapp, showWebsite, contactColor,
+topLayout}) {
   return (
-    <section className="preview-content" ref={pdfRef}>
+    <section className="preview-content" ref={pdfRef} style={{flexDirection: topLayout ? 'column' : 'row'}}>
       <ContactInfo person={person} show={show} separators={separators}
       educationCounter={educationCounter} showGithub={showGithub} showLinkedIn={showLinkedIn}
       showWhatsapp={showWhatsapp} showTelegram={showTelegram} showWebsite={showWebsite}
-      contactColor={contactColor}/>
+      contactColor={contactColor} topLayout={topLayout}/>
       <PreviewInfo person={person} show={show} separators={separators} />
     </section>
   )
@@ -36,7 +37,7 @@ export function PreviewInfo({person, show, separators}) {
   
 
 export function ContactInfo({person, separators, showGithub, showLinkedIn,
-showWhatsapp, showTelegram, showWebsite, educationCounter, contactColor}) {
+showWhatsapp, showTelegram, showWebsite, educationCounter, contactColor, topLayout}) {
   return (
     <div className="contact-info" style={{backgroundColor: contactColor}}>
         <>
