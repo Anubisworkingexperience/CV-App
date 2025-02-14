@@ -24,6 +24,7 @@
   min-width: max-content;
   flex: 1;
   font-size: 1.25rem;
+  padding: .5rem;
 }
 
 .clearIcon, .exampleIcon, .downloadIcon {

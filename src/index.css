@@ -41,6 +41,7 @@ body {
   min-width: 320px;
   background-color: #fcfafa;
   min-height: 100vh;
+  margin: 20px;
 }
 
 button {

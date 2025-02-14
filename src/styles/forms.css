@@ -125,3 +125,8 @@ textarea {
   flex-direction: column;
   gap: 15px;
 }
+
+.add-education, .add-experience {
+  min-width: max-content;
+  border: 1px solid black;
+}
